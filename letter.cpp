@@ -4,6 +4,12 @@
 
 using namespace std;
 
+#if __APPLE__ || __linux__ || __unix__
+const string EOF_character("^d");
+#else
+const string EOF_character("^z");
+#endif 
+
 int32_t CountWhiteSpace(string l) {
 	int32_t white_space_count = 0;
 	for (uint32_t index = 0; index < l.size(); index++) {
@@ -31,7 +37,7 @@ int32_t CountVowels(string l) {
 int main()
 {
 	string a_line_of_input;
-	cout << "Enter a line of text (^z to exit): ";
+	cout << "Enter a line of text (" << EOF_character << " to exit): ";
 	while (getline(cin, a_line_of_input)) {
 		if (a_line_of_input.size() > 0) {
 			cout << "You entered: \"" << a_line_of_input << "\"" << endl;
